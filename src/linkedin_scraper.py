@@ -43,9 +43,8 @@ class Scraper:
                     jobs.append(job)
                 except Exception as e:
                     print(f"Error parsing card: {e}")
-            if _ != 0:
-                index = _ * 25
-                search_url = search_url + f"&start={index}"
-                self.page.goto(search_url)
+            index = _ * 25
+            search_url = search_url + f"&start={index}"
+            self.page.goto(search_url)
         return jobs
 
