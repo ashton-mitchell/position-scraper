@@ -1,18 +1,15 @@
-import requests
-from bs4 import BeautifulSoup
+from src.linkedin_scraper import Scraper
+from src.text_utils import save_to_csv
 
-# URL of the website you want to scrape
-url = 'https://github.com'
+# add more keywords as needed
+scraper = Scraper()
+queries = ["embedded systems", "robotics"]
+scraped_jobs = []
 
-# Fetch the content of the page
-response = requests.get(url)
+for q in queries:
+    result = scraper.scrape_postings(q)
+    scraped_jobs.append(result)
 
-# Check for successful request
-if response.status_code == 200:
-    # Parse the HTML content
-    soup = BeautifulSoup(response.content, 'html.parser')
+save_to_csv(scraped_jobs)
 
-    # Print the page title
-    print("Page Title:", soup.title.string)
-else:
-    print(f"Failed to fetch page. Status code: {response.status_code}")
+print(f"\nScraped for {len(scraped_jobs)} queries!")
