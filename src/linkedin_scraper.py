@@ -12,10 +12,6 @@ class Scraper:
     def login(self):
         if not self.logged_in:
             self.page.goto("https://www.linkedin.com/login")
-            # page.fill('input[name="session_key"]', "ashton.d.mitchell@outlook.com")
-            # page.fill('input[name="session_password"]', "12201685Am!")
-            # # page.uncheck('input[name="keepmeloggedin"]')
-            # page.click('button[type="submit"]')
             self.logged_in = True
 
     def scrape_postings(self, query, max_results=50):
